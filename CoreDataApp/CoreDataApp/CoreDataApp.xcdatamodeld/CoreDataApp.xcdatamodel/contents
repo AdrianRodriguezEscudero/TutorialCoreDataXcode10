@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18B2084" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Alumnos" representedClassName="Alumnos" syncable="YES" codeGenerationType="class">
+        <attribute name="apellidos" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dni" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="matriculado" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Asignaturas" inverseName="contiene" inverseEntity="Asignaturas" syncable="YES"/>
+    </entity>
+    <entity name="Asignaturas" representedClassName="Asignaturas" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="contiene" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Alumnos" inverseName="matriculado" inverseEntity="Alumnos" syncable="YES"/>
+        <relationship name="esImpartida" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Profesores" inverseName="imparten" inverseEntity="Profesores" syncable="YES"/>
+    </entity>
+    <entity name="Profesores" representedClassName="Profesores" syncable="YES" codeGenerationType="class">
+        <attribute name="apellidos" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="dni" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="nombre" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="imparten" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Asignaturas" inverseName="esImpartida" inverseEntity="Asignaturas" syncable="YES"/>
+    </entity>
+    <fetchRequest name="consultaAlumnos" entity="Alumnos"/>
+    <fetchRequest name="consultaProfesores" entity="Profesores" predicateString="dni CONTAINS &quot;3&quot;"/>
+    <elements>
+        <element name="Alumnos" positionX="59.57421875" positionY="3.2734375" width="128" height="103"/>
+        <element name="Asignaturas" positionX="267.9375" positionY="4.55859375" width="128" height="103"/>
+        <element name="Profesores" positionX="165.26953125" positionY="-150.26953125" width="128" height="103"/>
+    </elements>
+</model>
